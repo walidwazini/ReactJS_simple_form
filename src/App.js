@@ -9,6 +9,7 @@ function App() {
   const onSubmit = (event) => {
     setUserInfo(event)
     console.log(event)
+    // console.log(this.formState.errors)
   }
 
   return (
@@ -22,22 +23,26 @@ function App() {
             <label>Username</label>
             <input type='text' name='username'
               placeholder='Username'
-              {...register('username')}
+              {...register('username', { required: true })}
             />
+            {errors.username?.type === 'required' && <p>Username is required</p>}
+
           </div>
           <div className='field' >
             <label>Email</label>
             <input type='email' name='email'
               placeholder='Email'
-              {...register('email')}
+              {...register('email', { required: 'Email is required' })}
             />
+            {errors.email?.type === 'required' && <p>Username is required</p>}
           </div>
           <div className='field' >
             <label>Password</label>
             <input type='password' name='password'
               placeholder='Password'
-              {...register('password')}
+              {...register('password', { required: 'Password is required' })}
             />
+            {errors.password?.type === 'required' && <p>Username is required</p>}
           </div>
           <button className='fluid ui button blue'>Submit</button>
         </div>
