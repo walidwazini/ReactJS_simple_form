@@ -1,21 +1,20 @@
 
 import React from 'react';
 import './App.css';
-import EnquiryForm from './Components/EnquiryForm';
+
 
 function App() {
   return (
-    <div className='App'>
-      <header>
-        Header
-      </header>
-      <body>
-        Simple Form Example body
-        <div className='container' >
-          Container
-          <EnquiryForm />
+    <div className='container'>
+      <form>
+        <h1>Registration Form</h1>
+        <div className='ui devider' ></div>
+        <div className='ui form'>
+          <div className='field' >
+            <label>Username</label>
+          </div>
         </div>
-      </body>
+      </form>
     </div>
   );
 }
