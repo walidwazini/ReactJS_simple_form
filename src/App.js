@@ -32,7 +32,13 @@ function App() {
             <label>Email</label>
             <input type='email' name='email'
               placeholder='Email'
-              {...register('email', { required: 'Email is required' })}
+              {...register('email', {
+                required: 'Email is required',
+                pattern: { 
+                  value: /^\S+@\S+$/i,
+                  message: 'This is not a valid email'
+                }
+              })}
             />
             {errors.email?.type === 'required' && <p>Username is required</p>}
           </div>
@@ -40,7 +46,12 @@ function App() {
             <label>Password</label>
             <input type='password' name='password'
               placeholder='Password'
-              {...register('password', { required: 'Password is required' })}
+              {...register('password', { 
+                required: 'Password is required',
+                minLength: {
+                  value: 7, message: 'Password must be at least 7 characters'
+                }
+               })}
             />
             {errors.password?.type === 'required' && <p>Username is required</p>}
           </div>
