@@ -1,6 +1,7 @@
 
 import React from 'react';
 import './App.css';
+import EnquiryForm from './Components/EnquiryForm';
 
 function App() {
   return (
@@ -9,7 +10,11 @@ function App() {
         Header
       </header>
       <body>
-        Simple Form Example
+        Simple Form Example body
+        <div className='container' >
+          Container
+          <EnquiryForm />
+        </div>
       </body>
     </div>
   );
