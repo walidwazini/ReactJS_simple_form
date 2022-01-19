@@ -9,6 +9,8 @@ function App() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const condtionOne = Object.keys(formErrors).length === 0 && isSubmit
+
   const handleChange = ev => {
     // console.log(ev.target)
     const { name, value } = ev.target
@@ -24,28 +26,46 @@ function App() {
   }
 
   useEffect(() => {
-    
-  } , [formErrors])
+    console.log(formErrors)
+    // Recevie the object of formError
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues)
+    }
+  }, [formErrors])
 
   const validate = (val) => {
     const errors = {}
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
     if (!val.username) {
-      errors.username = 'Username is required'
+      errors.username = 'Username is required!'
     }
     if (!val.email) {
-      errors.email = 'Username is required'
+      errors.email = 'Email is required'
+    } else if (!regex.test(val.email)) {
+      errors.email = 'Email is invalid!'
     }
     if (!val.password) {
-      errors.password = 'Username is required'
+      errors.password = 'Password is required!'
+    } else if (val.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters!'
     }
     // This erros will be send into setFormErrors
     return errors
   }
 
+  //  ---------------------------------------------------------
+
   return (
     <div className='container'>
-      <pre> {JSON.stringify(formValues, undefined, 2)} </pre>
+      {
+        Object.keys(formErrors).length === 0 && isSubmit
+          ? (<div className='ui floating green message'>
+            <p>Sign in succesful!</p>
+          </div>)
+          : (
+            <pre> {JSON.stringify(formValues, undefined, 2)} </pre>
+          )
+      }
       <form onSubmit={handleSubmit} >
         <h1>Login Form</h1>
         <div className='ui divider' ></div>
@@ -60,7 +80,7 @@ function App() {
               onChange={handleChange}
             />
           </div>
-          {/* <p>{formErrors.username}</p> */}
+          <p className='error-message'>{formErrors.username}</p>
           <div className="field">
             <label>Email</label>
             <input
@@ -71,7 +91,7 @@ function App() {
               onChange={handleChange}
             />
           </div>
-          {/* <p>{formErrors.email}</p> */}
+          <p className='error-message'>{formErrors.email}</p>
           <div className="field">
             <label>Password</label>
             <input
@@ -82,7 +102,7 @@ function App() {
               onChange={handleChange}
             />
           </div>
-          {/* <p>{formErrors.password}</p> */}
+          <p className='error-message'>{formErrors.password}</p>
           <button className="fluid ui button blue">Submit</button>
         </div>
       </form>
