@@ -9,13 +9,13 @@ function App() {
       <header>
         Header
       </header>
-      <body>
+      <React.Fragment>
         Simple Form Example body
         <div className='container' >
           Container
           <EnquiryForm />
         </div>
-      </body>
+      </React.Fragment>
     </div>
   );
 }
