@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './EnquiryForm.css'
+import Extra from './Extra'
 
 const EnquiryForm = () => {
   const [userInput, setUserInput] = useState({
@@ -59,6 +60,7 @@ const EnquiryForm = () => {
             value={userInput.enteredQuestion}
           />
         </div>
+        <Extra />
         <button type='submit'>Test</button>
       </form>
     </div>
